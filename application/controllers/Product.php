@@ -10,6 +10,8 @@ class Product extends CI_Controller{
     
     public function index() {
         //1. lekérdezem az adatbázisból a rekordokat
+        $this->load->library('session');
+        var_dump($this->session->all_userdata());
         $records = $this->product_model->get_list();
         
         //2. a rekordok megjelenítése a böngészőben

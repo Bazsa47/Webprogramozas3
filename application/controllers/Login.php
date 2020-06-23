@@ -20,17 +20,13 @@ class Login extends CI_Controller{
             if($this->form_validation->run()){
                 
                 $hashed_password = $this->users_model->getPasswordForUsername($this->input->post('username'));
-                var_dump($this->input->post('pw')); var_dump($hashed_password); 
                 if (password_verify($this->input->post('pw'),$hashed_password)) {
                     $this->load->helper('url');
-                    echo "Igen!";
+                    $this->load->library('session');
+                    var_dump($this->users_model->getUserRoleByUsername($this->input->post('username')));
+                    $this->session->set_userdata('role', $this->users_model->getUserRoleByUsername($this->input->post('username')));
                     redirect(base_url('Product'));     
-
-                }else{
-                      echo "Sikertelen Bejelentkezés!";
-                }
-              
-                           
+                }                       
             }
         }
         $this->load->helper('url');

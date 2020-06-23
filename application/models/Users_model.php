@@ -32,6 +32,24 @@ class Users_model extends CI_Model{
         return $result->password;
     }
     
+    public function getUserRoleByUsername($userName) {
+        $this->db->select('roleId');
+        $this->db->from('users');
+        $this->db->where('username',$userName);
+        $query = $this->db->get();
+        $roleId = $query->row();
+        $roleId = $roleId->roleId;
+        
+        $this->db->select('roleName');
+        $this->db->from('roles');
+        $this->db->where('roleId',$roleId);
+        $query = $this->db->get();
+        $result = $query->row();
+        
+        return $result->roleName;
+        
+    }
+    
      public function delete($id){
         $this->db->where('id',$id);
         return $this->db->delete('users');
