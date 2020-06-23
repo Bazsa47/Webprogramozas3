@@ -23,4 +23,28 @@ class Users extends CI_Controller{
         $this->load->view('Users/list', $view_params);
         
     }
+    
+     public function delete($id = null){
+        //van e jogosultságom a rekord törlésére?
+        
+        //létezik e egyeltalán a törölni kívánt rekord?
+        if($id == null){
+            show_error("Hiányzó rekordazonosító!");
+        }
+            //nézzük meg hogy az adb-ben létezik e az adott táblában az id
+        $record = $this->users_model->select_by_id($id);
+        if($record == null){
+            show_error("Ilyen azonosítóval nincs rekord!");
+        }
+        
+        //ha minden ok, akkör törlés, majd a listázó oldalra megyünk
+        $this->users_model->delete($id);
+        $this->load->helper('url');
+        redirect(base_url('users'));
+    }
+    
+    
+    
 }
+
+

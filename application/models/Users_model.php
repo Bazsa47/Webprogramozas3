@@ -20,4 +20,24 @@ class Users_model extends CI_Model{
         
         return $result;
     }
+    
+     public function delete($id){
+        $this->db->where('id',$id);
+        return $this->db->delete('users');
+    }
+    
+    public function insert($username, $pw, $address) {
+        $secret_password = password_hash($pw,PASSWORD_DEFAULT);
+         $record = [
+          'username' => $username,
+          'password'  => $secret_password,
+          'address'  => $address,
+          'roleId' => 0
+        ];
+        
+        //2. hívjuk meg az insert metódust
+        //a) elég tudnom azt h a beszúrás megtörtént
+        return $this->db->insert('users',$record);
+        
+    }
 }
