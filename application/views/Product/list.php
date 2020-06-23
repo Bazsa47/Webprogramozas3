@@ -10,7 +10,6 @@
                 <th>typeId</th>
                 <th>description</th>
                 <th>price</th>
-                <th>Műveletek</th>
             </tr>
         </thead>
         <tbody>

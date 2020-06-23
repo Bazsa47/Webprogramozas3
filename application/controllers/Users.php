@@ -42,6 +42,7 @@ class Users extends CI_Controller{
         $this->load->helper('url');
         redirect(base_url('users'));
     }
+
     
     
     

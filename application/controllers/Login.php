@@ -12,25 +12,36 @@ class Login extends CI_Controller{
         $this->load->helper('url');
         $this->load->helper('form');   
         //3. felhelyezem a nézetet + átadom a paramétereket.
-        $this->load->view('Users/insert');
-    }
-    
-     public function register(){
-        if($this->input->post('submit')){        
+ 
+         if($this->input->post('submit')){        
             $this->load->library('form_validation');
             $this->form_validation->set_rules('username','username','required');
             $this->form_validation->set_rules('pw','pw','required');
-            $this->form_validation->set_rules('address','address','required');
             if($this->form_validation->run()){
-                $this->users_model->insert($this->input->post('username'),
-                                               $this->input->post('pw'),$this->input->post('address'));
-                $this->load->helper('url');
-                redirect(base_url('Login'));                
+                
+                $hashed_password = $this->users_model->getPasswordForUsername($this->input->post('username'));
+                var_dump($this->input->post('pw')); var_dump($hashed_password); 
+                if (password_verify($this->input->post('pw'),$hashed_password)) {
+                    $this->load->helper('url');
+                    echo "Igen!";
+                    redirect(base_url('Product'));     
+
+                }else{
+                      echo "Sikertelen Bejelentkezés!";
+                }
+              
+                           
             }
         }
         $this->load->helper('url');
         $this->load->helper('form');
-        $this->load->view("Users/insert");
+        $this->load->view("Login/login");
+    }
+    
+    
+    
+    public function login(){
+         
     }
     //put your code here
 }

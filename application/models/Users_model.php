@@ -21,6 +21,17 @@ class Users_model extends CI_Model{
         return $result;
     }
     
+    public function getPasswordForUsername($username){
+        $this->db->select('password');
+        $this->db->from('users');
+        $this->db->where('username',$username);
+        
+        $query = $this->db->get();
+        $result = $query->row();
+        
+        return $result->password;
+    }
+    
      public function delete($id){
         $this->db->where('id',$id);
         return $this->db->delete('users');
