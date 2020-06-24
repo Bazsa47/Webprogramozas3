@@ -43,8 +43,11 @@ class Login extends CI_Controller{
     
     
     
-    public function login(){
-         
+    public function logout(){
+        $this->load->library('session');
+        $this->load->helper('url');
+        $this->session->sess_destroy();
+        redirect(base_url("Product"));
     }
     //put your code here
 }

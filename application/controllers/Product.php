@@ -12,6 +12,7 @@ class Product extends CI_Controller{
         //1. lekérdezem az adatbázisból a rekordokat
         $this->load->library('session');
         var_dump($this->session->all_userdata());
+        $this->load->library('session');
         $records = $this->product_model->get_list();
         
         //2. a rekordok megjelenítése a böngészőben
