@@ -10,6 +10,10 @@ class Users extends CI_Controller{
     
     public function index() {
         //1. lekérdezem az adatbázisból a rekordokat
+        //Ha admin jogosultsággal rendelkezünk
+        $this->load->library("session");
+        if($this->session->userdata('role') != null && $this->session->userdata('role') == "admin"){
+            
         $records = $this->users_model->get_list();
         
         //2. a rekordok megjelenítése a böngészőben
@@ -21,6 +25,10 @@ class Users extends CI_Controller{
         $this->load->helper('url');
         //3. felhelyezem a nézetet + átadom a paramétereket.
         $this->load->view('Users/list', $view_params);
+        }else{
+            $this->load->helper("url");
+            $this->load->view("Error/ForbiddenAccess");
+        }
         
     }
     
