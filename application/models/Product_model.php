@@ -20,4 +20,15 @@ class Product_model extends CI_Model{
         
         return $result;
     }
+    
+    public function getProductTypeByProductId($id){
+         $this->db->select('typeName');  //SELECT * 
+        $this->db->from('types'); //FROM employees
+        $this->db->where('typeId', $id);
+        
+        $query = $this->db->get();
+        $result = $query->row();
+        
+        return $result->typeName;
+    }
 }

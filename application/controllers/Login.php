@@ -18,14 +18,21 @@ class Login extends CI_Controller{
             $this->form_validation->set_rules('username','username','required');
             $this->form_validation->set_rules('pw','pw','required');
             if($this->form_validation->run()){
-                
+                if($this->users_model->getPasswordForUsername($this->input->post('username')) != null) {
                 $hashed_password = $this->users_model->getPasswordForUsername($this->input->post('username'));
                 if (password_verify($this->input->post('pw'),$hashed_password)) {
                     $this->load->helper('url');
                     $this->load->library('session');
-                    var_dump($this->users_model->getUserRoleByUsername($this->input->post('username')));
-                    $this->session->set_userdata('role', $this->users_model->getUserRoleByUsername($this->input->post('username')));
+                  //  var_dump($this->users_model->getUserRoleByUsername($this->input->post('username')));
+                    
+                        $this->session->set_userdata('role', $this->users_model->getUserRoleByUsername($this->input->post('username')));
                     redirect(base_url('Product'));     
+                }
+                else{
+                    echo "Hibás felhasználónév!";
+                }
+                   
+
                 }                       
             }
         }

@@ -9,6 +9,6 @@
 <br/>
 <?= form_submit('submit','Bejelentkezés'); ?>
 <br/>
-<?php echo anchor(base_url('Register/register'),'Regisztráció'); ?> 
+<?php echo anchor(base_url('Register'),'Regisztráció'); ?> 
 <?= form_close(); ?>
 

@@ -28,7 +28,7 @@ class Users_model extends CI_Model{
         
         $query = $this->db->get();
         $result = $query->row();
-        
+        if($result == null ) return "Invalid username";
         return $result->password;
     }
     
