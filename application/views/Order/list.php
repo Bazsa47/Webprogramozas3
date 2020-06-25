@@ -12,29 +12,24 @@
 
 
 <?php //echo anchor(base_url('employees/insert'),'Új hozzáadása'); ?> <!-- html <a> tag = php anchor() --->
-<?php if($users == NULL || empty($users)): ?>
-    <p>Nincs rögzítve egyetlen alkalmazott sem!</p>
+<?php if($orders == NULL || empty($orders)): ?>
+    <p>Nincs rögzítve egyetlen rendelés sem!</p>
 <?php else: ?>
     <table>
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Username</th>
-                <th>Address</th>
-                <th>Jogkör</th>
-                <th>Műveletek</th>
+                <th>Felhasználó</th>
+                <th>Termék</th>
             </tr>
         </thead>
         <tbody>
-                <?php foreach ( $users as &$user) :?> <!--//&: csak az adott rekord referenciáját másolom le -->
-                    <tr>
-                        <td><?=$user->id?></td>
-                        <!--<td><?php //echo anchor($emp->photo_path,$emp->name);?></td> -->
-                        <td><?=$user->username?></td>
-                        <td><?=$user->address?></td>
-                         <td><?=$this->users_model->getUserRoleNameByUserRoleId($user->roleId)?></td>
-                        <td><?= anchor(base_url('Users/edit/'.$user->id),"Módosítás") ?>
-                        <?=anchor(base_url('Users/delete/'.$user->id),"Törlés")?></td>
+                <?php foreach ( $orders as &$o) :?> <!--//&: csak az adott rekord referenciáját másolom le -->
+                    <tr>                    
+                        <td><?=$o->orderId?></td>
+                        <td><?php $this->load->model("users_model");?><?=$this->users_model->getUsernameByUserId($o->userId)?></td>   
+                         <td><?php $this->load->model("product_model");?><?=$this->product_model->getProductNameById($o->productId)?></td>   
+                       
                     
                     </tr>
                 <?php endforeach; ?>

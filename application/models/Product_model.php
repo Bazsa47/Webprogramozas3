@@ -32,6 +32,17 @@ class Product_model extends CI_Model{
         return $result->typeName;
     }
     
+    public function getProductNameById($id) {
+          $this->db->select('name');  //SELECT * 
+        $this->db->from('products'); //FROM employees
+        $this->db->where('id', $id);
+        
+        $query = $this->db->get();
+        $result = $query->row();
+        
+        return $result->name;
+    }
+    
     function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);

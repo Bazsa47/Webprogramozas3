@@ -27,6 +27,7 @@ class Login extends CI_Controller{
                   //  var_dump($this->users_model->getUserRoleByUsername($this->input->post('username')));
                     
                         $this->session->set_userdata('role', $this->users_model->getUserRoleByUsername($this->input->post('username')));
+                         $this->session->set_userdata('id', $this->users_model->getUserIdByUsername($this->input->post('username')));
                     redirect(base_url('Product'));     
                 }
                 else{
