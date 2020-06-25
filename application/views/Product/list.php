@@ -21,7 +21,7 @@
         <thead>
             <tr>
                 <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin") echo "<th>Id</th>" ?>
-                <th>Kép<th>
+                <th>Kép</th>
                 <th>Termék neve</th>
                 <th>Típus</th>
                 <th>Leírás</th>
