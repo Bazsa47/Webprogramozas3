@@ -13,7 +13,6 @@ class Product_model extends CI_Model{
         $this->db->from('products'); //FROM employees
         //kell-e where feltétel? most nem.
         //kell-e rendezni?
-        $this->db->order_by('name','ASC'); //ORDER BY name ASC
         
         $query = $this->db->get();  //lekérdezés OBJEKTUM!!!
         $result = $query->result();  //lekérdezés végrehajtása + rekordok betöltése.

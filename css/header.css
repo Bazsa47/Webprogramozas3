@@ -1,0 +1,21 @@
+#header{
+    background-color: black;
+    padding : 2%;
+    
+}
+
+#header a{
+    color:red;
+     text-decoration: none;
+    text-align: center;
+    padding-right: 5%;
+    padding-left: 5%;
+    font-size: 20px;
+       
+}
+
+#header #links{
+      margin-left: 20%;
+      margin-right: 20%;
+      text-align : center;
+}

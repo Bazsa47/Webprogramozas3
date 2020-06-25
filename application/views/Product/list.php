@@ -1,3 +1,9 @@
+<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/header.css">
+<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/display.css">
+
+
+<div id="header">
+    <div id="links">
 <?php $this->load->library("session");?>
 <?php echo anchor(base_url('Product'),'Termékek'); ?>
  <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin"): ?> 
@@ -9,14 +15,15 @@
 <?php else: ?>
      <?php echo anchor(base_url('Login/logout'),'Kijelentkezés'); ?>
 <?php endif; ?>
-
- <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin"): ?> 
+</div>
+</div>
+    <div id="container">
+        <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin"): ?> 
  <?php echo anchor(base_url('Product/insert'),'Termék hozzáadása'); ?>
  <?php endif;?>
 <?php if($products == NULL || empty($products)): ?>
     Nincs rögzített termék!
 <?php else: ?>
-    
     <table>
         <thead>
             <tr>
@@ -32,8 +39,9 @@
         <tbody>
                 <?php foreach ( $products as &$p) :?> <!--//&: csak az adott rekord referenciáját másolom le -->
                     <tr>
+
                          <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin") echo "<td>".$p->id."</td>"; ?> 
-                        <td><img src ="<?= $p->picture; ?> " ></td>
+                        <td><img src ="<?= $p->picture ?>" ></td>
                         <td><?=$p->name?></td>
                         <td><?=$this->product_model->getProductTypeByProductId($p->typeId)?></td>
                         <td><?=$p->description?></td>
@@ -53,6 +61,7 @@
                 <?php endforeach; ?>
         </tbody>
     </table>
+    </div>
 <?php endif; ?>
 
 

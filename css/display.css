@@ -1,0 +1,29 @@
+body {
+    background-color: grey;
+}
+
+
+#container{
+    background-color: white;
+     margin-left: 20%;
+     margin-right: 20%;
+}
+
+table {
+  border: 1px solid black;
+  table-layout: fixed;
+  width: 200px;
+  
+}
+
+ table {
+    margin: 0 auto; /* or margin: 0 auto 0 auto */
+  }
+
+
+th, td {
+  border: 1px solid black;
+  width: 100px;
+  overflow: hidden;
+  text-align: center;
+}

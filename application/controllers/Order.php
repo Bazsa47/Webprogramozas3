@@ -27,7 +27,11 @@ class Order extends CI_Controller{
         $this->load->view('Order/list', $view_params);
     }
     
-    public function placeOrder($productId){
+    public function placeOrder($productId = null){
+        if($productId == null ) {
+            $this->load->view("Error/404NotFound", ['error' => "Hiábyzó azonosító!"]);
+            return;
+        }
         $this->order_model->insert($productId, $this->session->userdata("id"));
         redirect(base_url("Product"));
     }
