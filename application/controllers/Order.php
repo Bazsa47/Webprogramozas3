@@ -27,8 +27,9 @@ class Order extends CI_Controller{
         $this->load->view('Order/list', $view_params);
     }
     
-    public function order($id){
-        echo $id;
+    public function placeOrder($productId){
+        $this->order_model->insert($productId, $this->session->userdata("id"));
+        redirect(base_url("Product"));
     }
     //put your code here
 }

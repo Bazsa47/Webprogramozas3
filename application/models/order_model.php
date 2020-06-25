@@ -20,6 +20,17 @@ class order_model extends CI_Model{
         return $result;
     }
     
+    public function insert($productId,$userId){
+         $record = [
+          'productId' => $productId,
+          'userId'  => $userId
+        ];
+        
+        //2. hívjuk meg az insert metódust
+        //a) elég tudnom azt h a beszúrás megtörtént
+        return $this->db->insert('orders',$record);
+    }
+    
    
     //put your code here
 }
