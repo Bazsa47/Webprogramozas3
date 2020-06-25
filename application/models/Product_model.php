@@ -31,4 +31,29 @@ class Product_model extends CI_Model{
         
         return $result->typeName;
     }
+    
+    function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+    }
+    
+     public function insert($name, $price, $desc, $photo_path, $typeId) {
+         $record = [
+          'name' => $name,
+          'price'  => $price,
+          'description'  => $desc,
+          'picture' => $photo_path,
+          'typeId' => $typeId
+        ];
+        
+        //2. hívjuk meg az insert metódust
+        //a) elég tudnom azt h a beszúrás megtörtént
+        return $this->db->insert('products',$record);
+        
+    }
 }
