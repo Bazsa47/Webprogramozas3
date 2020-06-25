@@ -5,6 +5,7 @@ class Register extends CI_Controller{
         parent::__construct();
         
         $this->load->model('users_model');
+        $this->load->library('session');
         //innentől az emp. modell metódusait a $this->employees_model-en keresztül tudjuk hívni.
     } 
     

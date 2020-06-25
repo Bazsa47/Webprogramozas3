@@ -69,4 +69,21 @@ class Users_model extends CI_Model{
         return $this->db->insert('users',$record);
         
     }
+    
+    public function selectById($id){
+         $this->db->select("*");
+        $this->db->from("users");
+        $this->db->where('id',$id);
+        
+        return $this->db->get()->row(); 
+    }
+    
+      public function update($id,$username, $address){
+        $record = ['username' => $username,
+                   'address' => $address,
+                  ];
+        
+        $this->db->where('id',$id);
+        return $this->db->update('users',$record);
+    }
 }

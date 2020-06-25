@@ -5,14 +5,12 @@ class Product extends CI_Controller{
         parent::__construct();
         
         $this->load->model('product_model');
+        $this->load->library('session');
         //innentől az emp. modell metódusait a $this->employees_model-en keresztül tudjuk hívni.
     }
     
     public function index() {
         //1. lekérdezem az adatbázisból a rekordokat
-        $this->load->library('session');
-        var_dump($this->session->all_userdata());
-        $this->load->library('session');
         $records = $this->product_model->get_list();
         
         //2. a rekordok megjelenítése a böngészőben
