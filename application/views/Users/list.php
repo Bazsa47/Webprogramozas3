@@ -19,6 +19,7 @@
                 <th>Id</th>
                 <th>Username</th>
                 <th>Address</th>
+                <th>Jogkör</th>
                 <th>Műveletek</th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@
                         <!--<td><?php //echo anchor($emp->photo_path,$emp->name);?></td> -->
                         <td><?=$user->username?></td>
                         <td><?=$user->address?></td>
+                         <td><?=$this->users_model->getUserRoleNameByUserRoleId($user->roleId)?></td>
                         <td><?= anchor(base_url('Users/edit/'.$user->id),"Módosítás") ?>
                         <?=anchor(base_url('Users/delete/'.$user->id),"Törlés")?></td>
                     

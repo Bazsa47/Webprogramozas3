@@ -50,6 +50,17 @@ class Users_model extends CI_Model{
         
     }
     
+    public function getUserRoleNameByUserRoleId($id){
+         $this->db->select("roleName");
+        $this->db->from("roles");
+        $this->db->where('roleId',$id);
+        
+        $query = $this->db->get();
+        $result = $query->row();
+        
+        return $result->roleName;
+    }
+    
      public function delete($id){
         $this->db->where('id',$id);
         return $this->db->delete('users');
