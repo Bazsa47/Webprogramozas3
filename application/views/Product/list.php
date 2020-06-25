@@ -24,18 +24,23 @@
                 <th>Típus</th>
                 <th>Leírás</th>
                 <th>Ár</th>
+                <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin") echo "<th>Műveletek</th>" ?>
             </tr>
         </thead>
         <tbody>
                 <?php foreach ( $products as &$p) :?> <!--//&: csak az adott rekord referenciáját másolom le -->
                     <tr>
-                         <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin") echo "<td>".$p->id."</td>" ?> 
+                         <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin") echo "<td>".$p->id."</td>"; ?> 
                         <td><img src ="<?= $p->picture; ?> " ></td>
                         <td><?=$p->name?></td>
                         <td><?=$this->product_model->getProductTypeByProductId($p->typeId)?></td>
                         <td><?=$p->description?></td>
                         <td><?=$p->price." Ft"?></td>
-                        <td>                
+                        <td>
+                            <?= anchor(base_url('Product/edit/'.$p->id),"Módosítás") ?>
+                            <?=anchor(base_url('Product/delete/'.$p->id),"Törlés")?>
+                           
+                        </td>
                     </tr>
                 <?php endforeach; ?>
         </tbody>

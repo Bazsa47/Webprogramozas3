@@ -56,4 +56,28 @@ class Product_model extends CI_Model{
         return $this->db->insert('products',$record);
         
     }
+    
+     public function selectById($id){
+         $this->db->select("*");
+        $this->db->from("products");
+        $this->db->where('id',$id);
+        
+        return $this->db->get()->row(); 
+    }
+    
+     public function delete($id){
+        $this->db->where('id',$id);
+        return $this->db->delete('products');
+    }
+    
+     public function update($id,$name, $price, $desc, $type){
+        $record = ['name' => $name,
+                   'price' => $price,
+                   'description' => $desc,
+                   'typeId' => $type
+                  ];
+        
+        $this->db->where('id',$id);
+        return $this->db->update('products',$record);
+    }
 }

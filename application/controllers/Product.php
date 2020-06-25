@@ -108,4 +108,77 @@ class Product extends CI_Controller{
         $this->load->helper('form');
         $this->load->view("Product/insert");
     }
+    
+     public function delete($id = null){
+        //van e jogosultságom a rekord törlésére?
+        $this->load->helper('url');
+        $this->load->library('session');
+        //létezik e egyeltalán a törölni kívánt rekord?
+         if($this->session->userdata('role') != null && $this->session->userdata('role') == "admin"){
+        if($id == null){
+            show_error("Hiányzó rekordazonosító!");
+        }
+            //nézzük meg hogy az adb-ben létezik e az adott táblában az id
+        $record = $this->product_model->selectById($id);
+        if($record == null){
+            show_error("Ilyen azonosítóval nincs rekord!");
+        }
+        
+        //ha minden ok, akkör törlés, majd a listázó oldalra megyünk
+        $this->product_model->delete($id);
+        
+        redirect(base_url('Product'));
+         }else{
+             $this->load->view("Error/ForbiddenAccess");
+         }
+    }
+    
+     public function edit($id = -1){
+       
+         if($id == null || $id == -1){
+             $view_param = [
+                 'error' => "Hibás azonosító!"
+             ];
+            $this->load->view("Error/404NotFound", $view_param);
+            return;
+        }
+        
+        $record = $this->product_model->selectById($id);
+        if($record == null){
+           $view_param = [
+                 'error' => "Hibás azonosító!"
+             ];
+            $this->load->view("Error/404NotFound", $view_param);
+            return;
+        }
+        
+         if($this->session->userdata('role') != null && $this->session->userdata('role') == "admin"){
+        $this->load->library("form_validation");
+        //lemásolom az insertből a validációs szabályokat
+        $this->form_validation->set_rules('name','name','required');
+        $this->form_validation->set_rules('price','price','required');
+        $this->form_validation->set_rules('desc','desc','required');
+         $this->form_validation->set_rules('type','type','required');
+        
+        //megnézem hogy rendben vannak e a validációs szabályok. ha nem akkor felület, ha igen akkor szerkesztés.
+        if($this->form_validation->run() == true){
+            //kezdeményezzük a rekord frissítését, amely ha sikeeres, visszamegyünk a lista oldalra.
+            $this->product_model->update($id,   $this->input->post('name'),
+                                                $this->input->post('price'),
+                                                $this->input->post('desc'),
+                                                $this->input->post('type'));
+            $this->load->helper("url");
+            redirect(base_url('Product'));
+            }else{
+            $view_params = ['product' => $record];
+            $this->load->helper("form");// ahahoz kell hogy a nézetben a form elkészíthető legyyen a metódushívások segítségével      
+
+            //felhelyezem a nézetet
+            $this->load->view('Product/edit',$view_params);
+            }
+        }else{
+            $this->load->view('Error/ForbiddenAccess');
+        }
+            
+    }
 }
