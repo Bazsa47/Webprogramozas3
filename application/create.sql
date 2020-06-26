@@ -22,12 +22,13 @@ CREATE TABLE products(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(250) NOT NULL,
     price INT NOT NULL,
-    desc TEXT NOT NULL,
+    description TEXT NOT NULL,
+    classId INT NOT NULL,
     picture VARCHAR(255) NULL,
     typeId TINYINT(1) NOT NULL
 );
-INSERT INTO `products`(`name`, `price`, `description`, `picture`, `typeId`) VALUES ("TestProduct",19999,'This is a test product',null,1);
-INSERT INTO `products`(`name`, `price`, `description`, `picture`, `typeId`) VALUES ("TestProduct2",7999,'This is also a test product',null,2);
+INSERT INTO `products`(`name`, `price`, `description`,`classId`, `picture`, `typeId`) VALUES ("TestProduct",19999,'This is a test product',0,null,1);
+INSERT INTO `products`(`name`, `price`, `description`,`classId`, `picture`, `typeId`) VALUES ("TestProduct2",7999,'This is also a test product',2,null,2);
 
 CREATE TABLE types(
     typeId INT PRIMARY KEY,
@@ -43,6 +44,18 @@ CREATE TABLE orders(
     productId INT NOT NULL,
     userId INT NOT NULL
 );
+
+CREATE TABLE classification(
+    classId INT NOT NULL PRIMARY KEY,
+    className VARCHAR(255) NOT NULL
+);
+INSERT INTO `classification`(`classId`, `className`) VALUES (0,"PEGI 3");
+INSERT INTO `classification`(`classId`, `className`) VALUES (1,"PEGI 7");
+INSERT INTO `classification`(`classId`, `className`) VALUES (2,"PEGI 12");
+INSERT INTO `classification`(`classId`, `className`) VALUES (3,"PEGI 16");
+INSERT INTO `classification`(`classId`, `className`) VALUES (4,"PEGI 18");
+
+
 
 
 

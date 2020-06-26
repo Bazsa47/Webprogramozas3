@@ -31,6 +31,10 @@
 <?= form_input('desc',set_value('desc',$product->description)); ?>
 <?= form_error('desc'); ?>
 </br>
+<?= form_label('Besorolás:', 'class');  ?> 
+<?= form_input('class',set_value('class',$product->classId)); ?>
+<?= form_error('class'); ?>
+<br/>
 <?= form_label('Típus:', 'type');  ?> 
 <?= form_input('type',set_value('type',$product->typeId)); ?>
 <?= form_error('type'); ?>

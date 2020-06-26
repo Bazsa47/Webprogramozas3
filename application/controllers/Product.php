@@ -49,7 +49,7 @@ class Product extends CI_Controller{
             $this->form_validation->set_rules('price','price','required');
             $this->form_validation->set_rules('desc','desc','required');
             $this->form_validation->set_rules('type','type','required');
-            
+            $this->form_validation->set_rules('class','class','required');
             
             
             if($this->form_validation->run()){
@@ -57,6 +57,7 @@ class Product extends CI_Controller{
                 $this->product_model->insert($this->input->post('name'),
                                                $this->input->post('price'),
                                                $this->input->post('desc'),
+                                               $this->input->post('class'),
                                                $path,
                                                $this->input->post('type'));
                 

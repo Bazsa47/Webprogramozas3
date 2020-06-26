@@ -49,11 +49,12 @@ class Product_model extends CI_Model{
     return $randomString;
     }
     
-     public function insert($name, $price, $desc, $photo_path, $typeId) {
+     public function insert($name, $price, $desc, $class, $photo_path, $typeId) {
          $record = [
           'name' => $name,
           'price'  => $price,
           'description'  => $desc,
+          'classId' => $class,
           'picture' => $photo_path,
           'typeId' => $typeId
         ];
@@ -83,5 +84,21 @@ class Product_model extends CI_Model{
         
         $this->db->where('id',$id);
         return $this->db->update('products',$record);
+    }
+    
+    public function getProductClassByProductId($id) {       
+         $this->db->select("classId");
+        $this->db->from("products");
+        $this->db->where('id',$id);
+        
+        $classId = $this->db->get()->row()->classId;
+        $this->db->select("className");
+        $this->db->from("classification");
+        $this->db->where('classId',$classId);
+        
+         $query = $this->db->get();
+        $result = $query->row();
+        
+        return $result->className;
     }
 }

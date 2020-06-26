@@ -23,14 +23,14 @@ table {
 
 th, td {
   border: 1px solid black;
-  width: 100px;
+  width: 90px;
   overflow: hidden;
   text-align: center;
 }
 
 img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 }
 
 input[type = text]{

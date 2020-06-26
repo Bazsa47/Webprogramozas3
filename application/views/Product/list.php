@@ -31,8 +31,9 @@
                 <th>Kép</th>
                 <th>Termék neve</th>
                 <th>Típus</th>
+                <th>Besorolás</th>
                 <th>Leírás</th>
-                <th>Ár</th>
+                <th>Ár</th>                
                 <?php if ($this->session->userdata('role') != null) echo "<th>Rendelés</th>" ?>
                     <?php if($this->session->userdata('role') == "admin") echo "<th>Műveletek</th>" ?>
             </tr>
@@ -49,6 +50,7 @@
                         <?php endif;?>
                         <td><?=$p->name?></td>
                         <td><?=$this->product_model->getProductTypeByProductId($p->typeId)?></td>
+                        <td><?=$this->product_model->getProductClassByProductId($p->id) ?></td>
                         <td><?=$p->description?></td>
                         <td><?=$p->price." Ft"?></td>
 
