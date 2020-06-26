@@ -39,9 +39,13 @@
         <tbody>
                 <?php foreach ( $products as &$p) :?> <!--//&: csak az adott rekord referenciáját másolom le -->
                     <tr>
-
-                         <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin") echo "<td>".$p->id."</td>"; ?> 
-                        <td><img src ="<?= $p->picture ?>" ></td>
+                        <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin") echo "<td>".$p->id."</td>"; ?> 
+                            <?php if ($p->picture == null) :?>
+                                <td><a href = <?=base_url("uploads/img/placeholder.jpg") ?>><img src ="<?= base_url("uploads/img/placeholder.jpg"); ?>" ></a></td>
+                                           
+                            <?php else: ?>
+                                <td><a href= <?=$p->picture ?>> <img src ="<?= $p->picture ?>" ></a></td>
+                        <?php endif;?>
                         <td><?=$p->name?></td>
                         <td><?=$this->product_model->getProductTypeByProductId($p->typeId)?></td>
                         <td><?=$p->description?></td>

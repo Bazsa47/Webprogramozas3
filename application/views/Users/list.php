@@ -1,3 +1,8 @@
+<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/header.css">
+<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/display.css">
+
+<div id="header">
+    <div id="links">
 <?php $this->load->library("session");?>
 <?php echo anchor(base_url('Product'),'Termékek'); ?>
  <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin"): ?> 
@@ -9,8 +14,10 @@
 <?php else: ?>
      <?php echo anchor(base_url('Login/logout'),'Kijelentkezés'); ?>
 <?php endif; ?>
+    </div>
+</div>
 
-
+<div id="container">
 <?php //echo anchor(base_url('employees/insert'),'Új hozzáadása'); ?> <!-- html <a> tag = php anchor() --->
 <?php if($users == NULL || empty($users)): ?>
     <p>Nincs rögzítve egyetlen alkalmazott sem!</p>
@@ -40,4 +47,5 @@
                 <?php endforeach; ?>
         </tbody>
     </table>
+</div>
 <?php endif; ?>

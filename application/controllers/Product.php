@@ -42,9 +42,9 @@ class Product extends CI_Controller{
             
             $upload_config['allowed_types'] = 'jpg|jpeg|png'; //kiterjesztés
             $upload_config['max_size'] = 2300; //méret(kb)
-            $upload_config['min_width'] = 250; //minimum képszélesség (pixel)
+            $upload_config['min_width'] = 50; //minimum képszélesség (pixel)
             $upload_config['max_width'] = 2000; //max képszélesség
-            $upload_config['min_height'] = 250; //min magasság
+            $upload_config['min_height'] = 50; //min magasság
             $upload_config['max_height'] = 2000; //max magasság
             
             //állítsuk be a feltöltés konfigurációját
@@ -65,15 +65,9 @@ class Product extends CI_Controller{
             //el akarom végezni a feltöltést úgy hogy a feltötleni 
             //kívánt állomány a file mezöben van, ezt validáljuk le a config_upload alapján, 
             //ha minden kritériumnak eleget tesz akkor mentsük el a config_upload alapján!
-            
+            $path = base_url("uploads/img")."/".$upload_config['file_name'];
             if(!$this->upload->do_upload('file')){
-                //sikertelen feltöltés
-                //a hiba oka a this->upload->display_error() hívással kérhető le
-                //hiba esetén biztosítom, hogy újra fel tudja tölteni.
-
-  
-                $this->load->helper('form');               
-                //$this->load->view('file_upload/form', $view_params);
+                $path = null;
             }
             
              $this->load->library('form_validation');
@@ -88,7 +82,7 @@ class Product extends CI_Controller{
             $this->form_validation->set_rules('type','type','required');
             
             
-            $path = base_url("uploads/img")."/".$upload_config['file_name'];
+            
             if($this->form_validation->run()){
                 //a validáció ok, mehet a beszúrás az adatbázisba
                 $this->product_model->insert($this->input->post('name'),

@@ -1,3 +1,8 @@
+<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/header.css">
+<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/display.css">
+
+<div id="header">
+    <div id="links">
 <?php $this->load->library("session");?>
 <?php echo anchor(base_url('Product'),'Termékek'); ?>
  <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin"): ?> 
@@ -9,8 +14,10 @@
 <?php else: ?>
      <?php echo anchor(base_url('Login/logout'),'Kijelentkezés'); ?>
 <?php endif; ?>
+    </div>
+</div>
 
-
+<div id="container">
 <?= form_open_multipart(); ?>
 <?= form_label('Termék neve:', 'name');  ?> 
 <?= form_input('name', set_value('name',$product->name)); ?>
@@ -30,5 +37,5 @@
 <br/>
 <?= form_submit('submit','Szerkesztés'); ?>
 <?= form_close(); ?>
-
+</div>
 

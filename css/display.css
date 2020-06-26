@@ -27,3 +27,25 @@ th, td {
   overflow: hidden;
   text-align: center;
 }
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+input[type = text]{
+    border: 1px solid black;
+    margin-top:2%;
+}
+
+input[type = file]{
+     margin-top:2%;
+}
+
+input[type = submit]{
+     margin-top:2%;
+}
+
+input[type = password]{
+     margin-top:2%;
+}
