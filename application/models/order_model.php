@@ -31,6 +31,16 @@ class order_model extends CI_Model{
         return $this->db->insert('orders',$record);
     }
     
+    public function deleteByUserId($id){
+        $this->db->where('userId',$id);
+        return $this->db->delete('orders');
+    }
+    
+     public function deleteByProductId($id){
+        $this->db->where('ProductId',$id);
+        return $this->db->delete('orders'); 
+    }
+    
    
     //put your code here
 }

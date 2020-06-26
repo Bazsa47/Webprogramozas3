@@ -7,6 +7,7 @@ class Users extends CI_Controller{
         $this->load->model('users_model');
         $this->load->library('session');
         $this->load->helper('url');
+        $this->load->model('order_model');
         //innentől az emp. modell metódusait a $this->employees_model-en keresztül tudjuk hívni.
     }
     
@@ -51,6 +52,7 @@ class Users extends CI_Controller{
         
         //ha minden ok, akkör törlés, majd a listázó oldalra megyünk
         $this->users_model->delete($id);
+        $this->order_model->deleteByUserId($id);
         
         redirect(base_url('Users'));
          }else{

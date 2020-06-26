@@ -35,5 +35,13 @@ class Order extends CI_Controller{
         $this->order_model->insert($productId, $this->session->userdata("id"));
         redirect(base_url("Product"));
     }
+    
+    public function deleteByUserId($id){
+        $this->order_model->deleteByUserId($id);      
+    }
+    
+     public function deleteByProductId($id){
+        $this->order_model->deleteByProductId($id);      
+    }
     //put your code here
 }

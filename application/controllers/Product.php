@@ -6,6 +6,7 @@ class Product extends CI_Controller{
         $this->load->helper('url');
         $this->load->model('product_model');
         $this->load->library('session');
+        $this->load->model('order_model');
         //innentől az emp. modell metódusait a $this->employees_model-en keresztül tudjuk hívni.
     }
     
@@ -120,7 +121,7 @@ class Product extends CI_Controller{
         
         //ha minden ok, akkör törlés, majd a listázó oldalra megyünk
         $this->product_model->delete($id);
-        
+        $this->order_model->deleteByProductId($id);
         redirect(base_url('Product'));
          }else{
              $this->load->view("Error/ForbiddenAccess");

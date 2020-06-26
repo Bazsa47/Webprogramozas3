@@ -52,9 +52,9 @@
                         <td><?=$p->price." Ft"?></td>
 
                         <?php if ($this->session->userdata('role') != null) : ?> 
-                            <td><?= anchor(base_url('Order/placeOrder/'.$p->id),"Rendelés") ?></td>
+                            <td><?= anchor(base_url('Order/placeOrder/'.$p->id),"Rendelés") ?>
                                 <?php if($this->session->userdata('role') == "admin"):?>
-                                    <td>
+                                    
                                         <?= anchor(base_url('Product/edit/'.$p->id),"Módosítás") ?>
                                         <?=anchor(base_url('Product/delete/'.$p->id),"Törlés")?>
 
