@@ -18,6 +18,7 @@
 </div>
 
 <div id="container">
+    <a href="<?= base_url("Order/ordersPDF") ?>" download="Rendelések.pdf">Rendelések letöltése PDF-ben</a>
 <?php //echo anchor(base_url('employees/insert'),'Új hozzáadása'); ?> <!-- html <a> tag = php anchor() --->
 <?php if($orders == NULL || empty($orders)): ?>
     <p>Nincs rögzítve egyetlen rendelés sem!</p>

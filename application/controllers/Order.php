@@ -40,6 +40,37 @@ class Order extends CI_Controller{
         $this->order_model->deleteByUserId($id);      
     }
     
+    public function ordersPDF(){
+         $records = $this->order_model->get_list();
+        
+        //2. a rekordok megjelenítése a böngészőben
+        $view_params = [
+            'orders' => $records
+        ];
+        
+        //aaz url helper által biztzosított metódusokat fel tudom használni 
+        $this->load->helper('url');
+        //3. felhelyezem a nézetet + átadom a paramétereket.
+        $this->load->view('Order/list', $view_params);
+        
+         $html = $this->output->get_output();
+        
+        // Load pdf library
+        $this->load->library('pdf');
+        
+        // Load HTML content
+        $this->dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation
+        $this->dompdf->setPaper('A4', 'portrait');
+        
+        // Render the HTML as PDF
+        $this->dompdf->render();
+        
+        // Output the generated PDF (1 = download and 0 = preview)
+        $this->dompdf->stream("Rendelések.pdf", array("Attachment"=>0));
+    }
+    
      public function deleteByProductId($id){
         $this->order_model->deleteByProductId($id);      
     }
