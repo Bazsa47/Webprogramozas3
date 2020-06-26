@@ -17,8 +17,8 @@
     </div>
 </div>
 
-<div id="container">
-    <a href="<?= base_url("Order/ordersPDF") ?>" download="Rendelések.pdf">Rendelések letöltése PDF-ben</a>
+<div id="container">   
+         <a id="importantLink" href="<?= base_url("Order/ordersPDF") ?>" download="Rendelések.pdf">Rendelések letöltése PDF-ben</a>
 <?php if($orders == NULL || empty($orders)): ?>
     <p>Nincs rögzítve egyetlen rendelés sem!</p>
 <?php else: ?>

@@ -17,7 +17,7 @@ table {
 }
 
  table {
-    margin: 0 auto; /* or margin: 0 auto 0 auto */
+    margin: 0 auto;
   }
 
 
@@ -48,4 +48,16 @@ input[type = submit]{
 
 input[type = password]{
      margin-top:2%;
+}
+
+#importantLink{
+    color:red;
+    font-size: 20px;
+    text-decoration: none;
+      margin: 0 auto;
+    font-weight: bold;
+}
+
+#importantLink:hover{
+    color:blue;
 }

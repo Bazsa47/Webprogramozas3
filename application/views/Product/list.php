@@ -19,7 +19,7 @@
 </div>
     <div id="container">
         <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin"): ?> 
- <?php echo anchor(base_url('Product/insert'),'Termék hozzáadása'); ?>
+ <?php echo anchor(base_url('Product/insert'),'Termék hozzáadása','id="importantLink"'); ?>
  <?php endif;?>
 <?php if($products == NULL || empty($products)): ?>
     Nincs rögzített termék!

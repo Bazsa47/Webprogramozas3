@@ -27,7 +27,8 @@ class Login extends CI_Controller{
                     redirect(base_url('Product'));     
                 }
                 else{
-                    echo "Hibás felhasználónév!";
+                    $this->load->view("Login/login", ["error" => "Hibás felhasználónév!"]);
+                    return;
                 }                   
                 }                       
             }

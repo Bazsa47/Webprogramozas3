@@ -8,9 +8,6 @@ CREATE TABLE users(
     CONSTRAINT PK_Users PRIMARY KEY(id),
     CONSTRAINT UQ_Users_Username UNIQUE(username)
 );
-INSERT INTO `users`( `username`, `password`, `address`, `roleId`) VALUES ("TestUser1","password1","Eger",0);
-INSERT INTO `users`( `username`, `password`, `address`, `roleId`) VALUES ("TestUser2","password2","Eger",0);
-INSERT INTO `users`( `username`, `password`, `address`, `roleId`) VALUES ("Admin","admin","Eger",1);
 
 CREATE TABLE roles(
     roleId INT NOT NULL,
@@ -29,8 +26,8 @@ CREATE TABLE products(
     picture VARCHAR(255) NULL,
     typeId TINYINT(1) NOT NULL
 );
-INSERT INTO `products`(`name`, `price`, `description`, `picture`, `typeId`) VALUES ("TestProduct",19999,'This is a test product',null,1)
-INSERT INTO `products`(`name`, `price`, `description`, `picture`, `typeId`) VALUES ("TestProduct2",7999,'This is also a test product',null,2)
+INSERT INTO `products`(`name`, `price`, `description`, `picture`, `typeId`) VALUES ("TestProduct",19999,'This is a test product',null,1);
+INSERT INTO `products`(`name`, `price`, `description`, `picture`, `typeId`) VALUES ("TestProduct2",7999,'This is also a test product',null,2);
 
 CREATE TABLE types(
     typeId INT PRIMARY KEY,

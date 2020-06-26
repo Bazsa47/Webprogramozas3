@@ -23,13 +23,13 @@
 <?= form_label('Felhasználónév:', 'username');  ?> 
 <?= form_input('username', set_value('username','') ); ?>
 <?= form_error('name'); ?>
+    <?php if(isset($error)) echo $error;?>
 <br/>    
 <?= form_label('Jelszó:', 'pw');  ?> 
 <?= form_password('pw',set_value('pw','') ); ?>
 <?= form_error('pw'); ?>
 <br/>
 <?= form_submit('submit','Bejelentkezés'); ?>
-<br/>
 <?php echo anchor(base_url('Register'),'Regisztráció'); ?> 
 <?= form_close(); ?>
 </div>
