@@ -5,24 +5,21 @@ class Product_model extends CI_Model{
         parent::__construct();
         
         $this->load->database();
-        //innentől kezdve lesz db kapcsolatom -> a példányban a $this->db mezőn keresztül érem el az adatbázist
     }
     
      public function get_list(){
-        $this->db->select('*');  //SELECT * 
-        $this->db->from('products'); //FROM employees
-        //kell-e where feltétel? most nem.
-        //kell-e rendezni?
+        $this->db->select('*'); 
+        $this->db->from('products'); 
         
-        $query = $this->db->get();  //lekérdezés OBJEKTUM!!!
-        $result = $query->result();  //lekérdezés végrehajtása + rekordok betöltése.
+        $query = $this->db->get();  
+        $result = $query->result(); 
         
         return $result;
     }
     
     public function getProductTypeByProductId($id){
-         $this->db->select('typeName');  //SELECT * 
-        $this->db->from('types'); //FROM employees
+         $this->db->select('typeName');  
+        $this->db->from('types'); 
         $this->db->where('typeId', $id);
         
         $query = $this->db->get();
@@ -32,8 +29,8 @@ class Product_model extends CI_Model{
     }
     
     public function getProductNameById($id) {
-          $this->db->select('name');  //SELECT * 
-        $this->db->from('products'); //FROM employees
+          $this->db->select('name');  
+        $this->db->from('products'); 
         $this->db->where('id', $id);
         
         $query = $this->db->get();
@@ -60,9 +57,6 @@ class Product_model extends CI_Model{
           'picture' => $photo_path,
           'typeId' => $typeId
         ];
-        
-        //2. hívjuk meg az insert metódust
-        //a) elég tudnom azt h a beszúrás megtörtént
         return $this->db->insert('products',$record);
         
     }

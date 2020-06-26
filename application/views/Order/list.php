@@ -19,7 +19,6 @@
 
 <div id="container">
     <a href="<?= base_url("Order/ordersPDF") ?>" download="Rendelések.pdf">Rendelések letöltése PDF-ben</a>
-<?php //echo anchor(base_url('employees/insert'),'Új hozzáadása'); ?> <!-- html <a> tag = php anchor() --->
 <?php if($orders == NULL || empty($orders)): ?>
     <p>Nincs rögzítve egyetlen rendelés sem!</p>
 <?php else: ?>
@@ -32,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-                <?php foreach ( $orders as &$o) :?> <!--//&: csak az adott rekord referenciáját másolom le -->
+                <?php foreach ( $orders as &$o) :?> 
                     <tr>                    
                         <td><?=$o->orderId?></td>
                         <td><?php $this->load->model("users_model");?><?=$this->users_model->getUsernameByUserId($o->userId)?></td>   

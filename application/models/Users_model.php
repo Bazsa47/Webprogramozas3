@@ -5,18 +5,15 @@ class Users_model extends CI_Model{
         parent::__construct();
         
         $this->load->database();
-        //innentől kezdve lesz db kapcsolatom -> a példányban a $this->db mezőn keresztül érem el az adatbázist
     }
     
      public function get_list(){
-        $this->db->select('*');  //SELECT * 
-        $this->db->from('users'); //FROM employees
-        //kell-e where feltétel? most nem.
-        //kell-e rendezni?
-        $this->db->order_by('username','ASC'); //ORDER BY name ASC
+        $this->db->select('*'); 
+        $this->db->from('users'); 
+        $this->db->order_by('username','ASC'); 
         
-        $query = $this->db->get();  //lekérdezés OBJEKTUM!!!
-        $result = $query->result();  //lekérdezés végrehajtása + rekordok betöltése.
+        $query = $this->db->get(); 
+        $result = $query->result(); 
         
         return $result;
     }
@@ -61,8 +58,8 @@ class Users_model extends CI_Model{
         return $result->roleName;
     }
      public function getUsernameByUserId($id){
-          $this->db->select('username');  //SELECT * 
-        $this->db->from('users'); //FROM employees
+          $this->db->select('username'); 
+        $this->db->from('users');
         $this->db->where('id', $id);
         
         $query = $this->db->get();
@@ -97,8 +94,7 @@ class Users_model extends CI_Model{
           'roleId' => 0
         ];
         
-        //2. hívjuk meg az insert metódust
-        //a) elég tudnom azt h a beszúrás megtörtént
+
         return $this->db->insert('users',$record);
         
     }

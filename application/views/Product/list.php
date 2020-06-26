@@ -38,7 +38,7 @@
             </tr>
         </thead>
         <tbody>
-                <?php foreach ( $products as &$p) :?> <!--//&: csak az adott rekord referenciáját másolom le -->
+                <?php foreach ( $products as &$p) :?> 
                     <tr>
                         <?php if ($this->session->userdata('role') != null && $this->session->userdata('role') == "admin") echo "<td>".$p->id."</td>"; ?> 
                             <?php if ($p->picture == null) :?>

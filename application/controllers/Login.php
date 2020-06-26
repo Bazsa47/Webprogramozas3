@@ -6,13 +6,11 @@ class Login extends CI_Controller{
         
         $this->load->model('users_model');
         $this->load->library('session');
-        //innentől az emp. modell metódusait a $this->employees_model-en keresztül tudjuk hívni.
     }
     
     public function index(){
         $this->load->helper('url');
         $this->load->helper('form');   
-        //3. felhelyezem a nézetet + átadom a paramétereket.
  
          if($this->input->post('submit')){        
             $this->load->library('form_validation');
@@ -23,18 +21,14 @@ class Login extends CI_Controller{
                 $hashed_password = $this->users_model->getPasswordForUsername($this->input->post('username'));
                 if (password_verify($this->input->post('pw'),$hashed_password)) {
                     $this->load->helper('url');
-                    $this->load->library('session');
-                  //  var_dump($this->users_model->getUserRoleByUsername($this->input->post('username')));
-                    
+                    $this->load->library('session');          
                         $this->session->set_userdata('role', $this->users_model->getUserRoleByUsername($this->input->post('username')));
                          $this->session->set_userdata('id', $this->users_model->getUserIdByUsername($this->input->post('username')));
                     redirect(base_url('Product'));     
                 }
                 else{
                     echo "Hibás felhasználónév!";
-                }
-                   
-
+                }                   
                 }                       
             }
         }
@@ -51,5 +45,4 @@ class Login extends CI_Controller{
         $this->session->sess_destroy();
         redirect(base_url("Product"));
     }
-    //put your code here
 }

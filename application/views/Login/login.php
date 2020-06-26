@@ -21,11 +21,11 @@
 <div id="container">
 <?= form_open(); ?>
 <?= form_label('Felhasználónév:', 'username');  ?> 
-<?= form_input('username', set_value('username','') /*[ 'id' => 'username']*/); ?>
+<?= form_input('username', set_value('username','') ); ?>
 <?= form_error('name'); ?>
 <br/>    
 <?= form_label('Jelszó:', 'pw');  ?> 
-<?= form_password('pw',set_value('pw','') /*['placeholder' => 'Password', 'type' => 'password' ]*/); ?>
+<?= form_password('pw',set_value('pw','') ); ?>
 <?= form_error('pw'); ?>
 <br/>
 <?= form_submit('submit','Bejelentkezés'); ?>

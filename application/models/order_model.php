@@ -5,17 +5,14 @@ class order_model extends CI_Model{
         parent::__construct();
         
         $this->load->database();
-        //innentől kezdve lesz db kapcsolatom -> a példányban a $this->db mezőn keresztül érem el az adatbázist
     }
     
      public function get_list(){
-        $this->db->select('*');  //SELECT * 
-        $this->db->from('orders'); //FROM employees
-        //kell-e where feltétel? most nem.
-        //kell-e rendezni?
-        
-        $query = $this->db->get();  //lekérdezés OBJEKTUM!!!
-        $result = $query->result();  //lekérdezés végrehajtása + rekordok betöltése.
+        $this->db->select('*');  
+        $this->db->from('orders'); 
+      
+        $query = $this->db->get();  
+        $result = $query->result();  
         
         return $result;
     }
@@ -25,9 +22,6 @@ class order_model extends CI_Model{
           'productId' => $productId,
           'userId'  => $userId
         ];
-        
-        //2. hívjuk meg az insert metódust
-        //a) elég tudnom azt h a beszúrás megtörtént
         return $this->db->insert('orders',$record);
     }
     
@@ -40,7 +34,5 @@ class order_model extends CI_Model{
         $this->db->where('ProductId',$id);
         return $this->db->delete('orders'); 
     }
-    
-   
-    //put your code here
+
 }

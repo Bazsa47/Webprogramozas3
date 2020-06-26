@@ -18,7 +18,6 @@
 </div>
 
 <div id="container">
-<?php //echo anchor(base_url('employees/insert'),'Új hozzáadása'); ?> <!-- html <a> tag = php anchor() --->
 <?php if($users == NULL || empty($users)): ?>
     <p>Nincs rögzítve egyetlen alkalmazott sem!</p>
 <?php else: ?>
@@ -33,10 +32,9 @@
             </tr>
         </thead>
         <tbody>
-                <?php foreach ( $users as &$user) :?> <!--//&: csak az adott rekord referenciáját másolom le -->
+                <?php foreach ( $users as &$user) :?> 
                     <tr>
                         <td><?=$user->id?></td>
-                        <!--<td><?php //echo anchor($emp->photo_path,$emp->name);?></td> -->
                         <td><?=$user->username?></td>
                         <td><?=$user->address?></td>
                          <td><?=$this->users_model->getUserRoleNameByUserRoleId($user->roleId)?></td>

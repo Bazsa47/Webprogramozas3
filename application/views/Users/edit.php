@@ -20,11 +20,11 @@
 <div id="container">
 <?= form_open(); ?>
 <?= form_label('Felhasználónév:', 'username');  ?> 
-<?= form_input('username', set_value('username',$user->username) /*[ 'id' => 'username']*/); ?>
+<?= form_input('username', set_value('username',$user->username) ); ?>
 <?= form_error('name'); ?>
 <br/>    
 <?= form_label('Cím:', 'address');  ?> 
-<?= form_input('address',set_value('address',$user->address)    /*['placeholder' => 'Address']*/); ?>
+<?= form_input('address',set_value('address',$user->address)); ?>
 <?= form_error('address'); ?>
 <br/>
 <?= form_submit('submit','Módosítás'); ?>
