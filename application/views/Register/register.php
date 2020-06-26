@@ -21,7 +21,8 @@
 <?= form_open(); ?>
 <?= form_label('Felhasználónév:', 'username');  ?> 
 <?= form_input('username', set_value('username','')); ?>
-<?= form_error('name'); ?>
+<?= form_error('username'); ?>
+    <?php if(isset($error))echo $error;?>
 <br/>    
 <?= form_label('Jelszó:', 'pw');  ?> 
 <?= form_password('pw',set_value('pw','') ); ?>
@@ -30,6 +31,7 @@
 <?= form_label('Cím:', 'address');  ?> 
 <?= form_input('address',set_value('address','')); ?>
 <?= form_error('address'); ?>
+
 <br/>
 <?= form_submit('submit','Register'); ?>
 <?php echo anchor(base_url('Login'),'Bejelentkezés'); ?> 
